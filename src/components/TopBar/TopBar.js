@@ -1,8 +1,11 @@
 import React from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 
 const TopBar = () => {
+  const dispatch=useDispatch();
+  const cartState=useSelector((state)=>state.cartReducer)
   return (
     <>
       <Navbar bg="dark" variant="dark" expand="lg">
@@ -23,7 +26,7 @@ const TopBar = () => {
               <Nav.Link>Login</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/cart" activeClassName>
-              <Nav.Link>Cart</Nav.Link>
+              <Nav.Link>Cart {cartState.cartItems.length}</Nav.Link>
             </LinkContainer>
           </Nav>
         </Container>
