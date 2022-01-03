@@ -1,35 +1,37 @@
-import React,{ useEffect } from 'react';
-import { Container,Row,Col} from 'react-bootstrap';
-import Pizza from '../Pizza/Pizza';
-// import { getAllPizzas } from "";
+import React, { useEffect } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import Pizza from "../Pizza/Pizza";
+import { getAllPizzas } from "../../redux/actions/pizzaAction";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPizzas } from '../../redux/actions/pizzaAction';
+import Loader from "../Loader/Loader";
+import Error from "../Error/Error";
 const Home = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const pizzaState = useSelector((state) => state.getAllPizzaReducer);
   const { loading, pizzas, error } = pizzaState;
   useEffect(() => {
     dispatch(getAllPizzas());
   }, [dispatch]);
-    return (
-        <>
-            <Container>
+  return (
+    <>
+      <Container>
         {loading ? (
-          <h1>Loading ...</h1>
+          <Loader/>
         ) : error ? (
-          <h1>Error while fetching pizzas</h1>
+          <Error/>
         ) : (
           <Row>
-            {pizzas.map((pizza) => (
+            {/* <Filter/> */}
+            {pizzas.map((pizza,id) => (
               <Col md={4}>
-                <Pizza pizza={pizza} />
+                <Pizza pizza={pizza} key={id} />
               </Col>
             ))}
           </Row>
         )}
       </Container>
-        </>
-    );
+    </>
+  );
 };
 
 export default Home;
