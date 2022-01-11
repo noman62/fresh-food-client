@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "proxy": "http://localhost:8080",
+  "proxy": "https://lit-beach-61576.herokuapp.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
